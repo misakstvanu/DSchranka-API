@@ -2,7 +2,7 @@
 
 namespace Misakstvanu\DschrankaApiLaravel;
 
-class DSchrankaDraft {
+class Draft {
     private $databox_id;
     private $draftId;
     private $data;
@@ -55,8 +55,8 @@ class DSchrankaDraft {
 
     public function get(){
         $uri = '/databox/'.$this->databox_id.'/drafts/'.$this->draftId;
-        $response = DSchrankaHTTPClient::request('GET', $uri);
-        return DSchrankaDraft::fromArray($response->json());
+        $response = HTTPClient::request('GET', $uri);
+        return Draft::fromArray($response->json());
     }
 
     public function send(){
@@ -65,7 +65,7 @@ class DSchrankaDraft {
 
     public function save(){
         $data = $this->data;
-        if($data['address'] instanceof DSchrankaAddress){
+        if($data['address'] instanceof Address){
             $data['address'] = $data['address']->toArray();
         } else {
             $id = $data['address'];
@@ -74,13 +74,13 @@ class DSchrankaDraft {
         $data['draft_id'] = $this->draftId;
 
         $uri = '/databox/'.$this->databox_id.'/drafts';
-        $response = DSchrankaHTTPClient::request('POST', $uri, $data);
+        $response = HTTPClient::request('POST', $uri, $data);
         return self::fromArray($response->json());
     }
 
     public function delete(){
         $uri = '/databox/'.$this->databox_id.'/drafts/'.$this->draftId;
-        $response = DSchrankaHTTPClient::request('DELETE', $uri);
+        $response = HTTPClient::request('DELETE', $uri);
         return true;
     }
 }

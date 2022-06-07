@@ -4,7 +4,7 @@ namespace Misakstvanu\DschrankaApiLaravel;
 
 use GuzzleHttp\Client;
 
-class DSchrankaHTTPClient {
+class HTTPClient {
     const URL = 'https://dschranka.cz/api/partner';
     const LOCAL_URL = 'http://127.0.0.1:8001/api/partner';
 
@@ -25,7 +25,7 @@ class DSchrankaHTTPClient {
             ]
         );
 
-        return new DSchrankaHTTPResponse($response);
+        return new HTTPResponse($response);
     }
 
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace Misakstvanu\DschrankaApiLaravel;
+namespace Misakstvanu\DSchrankaApiLaravel;
 
-class DSchrankaMessageStatus {
+class MessageStatus {
     const STATUSES = [
         0 => 'nedostupné',
         1 => 'podáno',

@@ -2,7 +2,7 @@
 
 namespace Misakstvanu\DschrankaApiLaravel;
 
-class DSchrankaAttachment {
+class Attachment {
     private $mimetype;
     private $filename;
     private $content;

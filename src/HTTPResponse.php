@@ -4,7 +4,7 @@ namespace Misakstvanu\DschrankaApiLaravel;
 
 use GuzzleHttp\Psr7\Response;
 
-class DSchrankaHTTPResponse {
+class HTTPResponse {
     private Response $response;
 
     public function __construct($response){

@@ -2,7 +2,7 @@
 
 namespace Misakstvanu\DschrankaApiLaravel;
 
-class DSchrankaAddress {
+class Address {
     const FIELDS = ['name', 'type', 'id'];
     private $name;
     private $type;

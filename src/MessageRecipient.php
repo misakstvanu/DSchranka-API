@@ -2,7 +2,7 @@
 
 namespace Misakstvanu\DschrankaApiLaravel;
 
-class DSchrankaMessageRecipient {
+class MessageRecipient {
     private $name;
     private $address;
 

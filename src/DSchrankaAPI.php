@@ -5,18 +5,18 @@ namespace Misakstvanu\DschrankaApiLaravel;
 class DSchrankaAPI {
 
     public static function ping(){
-        return DSchrankaSystem::ping();
+        return System::ping();
     }
 
     public static function auth(){
-        return new DSchrankaAuth();
+        return new Auth();
     }
 
     public static function databox($databox_id = null){
         if($databox_id)
-            return new DSchrankaDatabox($databox_id);
+            return new Databox($databox_id);
         else
-            return new DSchrankaDataboxBuilder();
+            return new DataboxBuilder();
     }
 
 

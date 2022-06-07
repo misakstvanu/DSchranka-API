@@ -2,7 +2,7 @@
 
 namespace Misakstvanu\DschrankaApiLaravel;
 
-class DSchrankaMessageFile {
+class MessageFile {
     private $content;
 
     function __construct($content){

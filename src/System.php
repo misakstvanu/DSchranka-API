@@ -2,10 +2,10 @@
 
 namespace Misakstvanu\DschrankaApiLaravel;
 
-class DSchrankaSystem {
+class System {
 
     static function ping(){
-        DSchrankaHTTPClient::request('GET', '/ping');
+        HTTPClient::request('GET', '/ping');
         return true;
     }
 

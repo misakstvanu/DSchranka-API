@@ -2,7 +2,7 @@
 
 namespace Misakstvanu\DschrankaApiLaravel;
 
-class DSchrankaMessageSender {
+class MessageSender {
     private $name;
     private $address;
     private $type;
@@ -15,7 +15,7 @@ class DSchrankaMessageSender {
 
     public function getName(){ return $this->name; }
     public function getAddress(){ return $this->address; }
-    public function getType(){ return new DSchrankaDataboxType($this->type); }
-    public function getTypeShort(){ return (new DSchrankaDataboxType($this->type))->short(); }
-    public function getTypeLong(){ return (new DSchrankaDataboxType($this->type))->long(); }
+    public function getType(){ return new DataboxType($this->type); }
+    public function getTypeShort(){ return (new DataboxType($this->type))->short(); }
+    public function getTypeLong(){ return (new DataboxType($this->type))->long(); }
 }

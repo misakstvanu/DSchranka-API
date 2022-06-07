@@ -2,7 +2,7 @@
 
 namespace Misakstvanu\DschrankaApiLaravel;
 
-class DSchrankaDraftBuilder {
+class DraftBuilder {
     private $databox_id;
 
     public function __construct($databox_id){
@@ -10,13 +10,13 @@ class DSchrankaDraftBuilder {
     }
 
     private function getList($uri, \DateTime $from = null, \DateTime $to = null){
-        $response = DSchrankaHTTPClient::request('GET', $uri, [
+        $response = HTTPClient::request('GET', $uri, [
             'from' => $from?->getTimestamp(),
             'to' => $to?->getTimestamp()
         ]);
         $list = [];
         foreach($response->json() as $draft)
-            array_push($list, DSchrankaDraft::fromArray($draft));
+            array_push($list, Draft::fromArray($draft));
         return $list;
     }
 
