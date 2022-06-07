@@ -1,6 +1,6 @@
 <?php
 
-namespace Misakstvanu\DschrankaApiLaravel;
+namespace Misakstvanu\DschrankaApi;
 
 class DataboxType {
     const TYPES = [0 => 'SYS', 10 => 'OVM', 20 => 'PO', 30 => 'PFO', 40 => 'FO'];

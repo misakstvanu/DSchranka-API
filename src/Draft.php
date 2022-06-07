@@ -1,6 +1,6 @@
 <?php
 
-namespace Misakstvanu\DschrankaApiLaravel;
+namespace Misakstvanu\DschrankaApi;
 
 class Draft {
     private int $databox_id;

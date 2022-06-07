@@ -1,6 +1,6 @@
 <?php
 
-namespace Misakstvanu\DschrankaApiLaravel;
+namespace Misakstvanu\DschrankaApi;
 
 class Databox {
     const FIELDS = ['username', 'name', 'created_at', 'updated_at', 'type'];
