@@ -11,7 +11,7 @@ class HTTPResponse {
         $this->response = $response;
     }
 
-    public function raw(){
+    public function raw(): Response{
         return $this->response;
     }
 
@@ -19,7 +19,7 @@ class HTTPResponse {
         return json_decode($this->response->getBody(), true);
     }
 
-    public function code(){
+    public function code(): int{
         return $this->response->getStatusCode();
     }
 

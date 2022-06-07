@@ -17,22 +17,22 @@ class Message {
         'G' => 'PDZ zaslaná v režimu Dotování jinou schránkou na účet schránky donátora.',
         'E' => 'PDZ odeslaná pomocí předplacení (kreditu).',
     ];
-    private $databox_id;
-    private $id;
-    private $read;
-    private $type;
-    private $sender;
-    private $recipient;
-    private $subject;
-    private $status;
-    private $attachments;
+    private int $databox_id;
+    private int $id;
+    private bool $read;
+    private string $type;
+    private array $sender;
+    private array $recipient;
+    private string $subject;
+    private int $status;
+    private array $attachments;
 
     public function __construct($databox_id, $id){
         $this->databox_id = $databox_id;
         $this->id = $id;
     }
 
-    public static function fromArray($array){
+    public static function fromArray($array): self{
         $new = new self($array['databox_id'], $array['id']);
         foreach(self::FIELDS as $field){
             $new->$field = $array[$field];
@@ -40,71 +40,73 @@ class Message {
         return $new;
     }
 
-    public function get(){
+    public function get(): self{
         $uri = '/databox/'.$this->databox_id.'/messages/'.$this->id;
         $response = HTTPClient::request('GET', $uri);
         return self::fromArray($response->json());
     }
 
-    public function downloadDeliveryInfo(){
+    public function downloadDeliveryInfo(): DeliveryInfoFile{
         $uri = '/databox/'.$this->databox_id.'/messages/'.$this->id.'/delivery_info/download';
         $response = HTTPClient::request('GET', $uri);
         return new DeliveryInfoFile($response->json()['content']);
     }
 
-    public function download(){
+    public function download(): MessageFile{
         $uri = '/databox/'.$this->databox_id.'/messages/'.$this->id.'/download';
         $response = HTTPClient::request('GET', $uri);
         return new MessageFile($response->json()['content']);
     }
 
-    public function markRead(){
+    public function markRead(): bool{
         $uri = '/databox/'.$this->databox_id.'/messages/'.$this->id;
         $response = HTTPClient::request('PUT', $uri, ['read' => true]);
         return true;
     }
 
-    public function markUnread(){
+    public function markUnread(): bool{
         $uri = '/databox/'.$this->databox_id.'/messages/'.$this->id;
         $response = HTTPClient::request('PUT', $uri, ['read' => false]);
         return true;
     }
 
-    public function delete(){
+    public function delete(): bool{
         $uri = '/databox/'.$this->databox_id.'/messages/'.$this->id;
         $response = HTTPClient::request('DELETE', $uri);
         return true;
     }
 
-    public function downloadAttachment($num = null){
+    public function downloadAttachment($num = null): Attachment|array{
         $uri = '/databox/'.$this->databox_id.'/messages/'.$this->id.'/attachments/'.$num;
         $response = HTTPClient::request('GET', $uri);
-        if($num != null) return new Attachment($response->json());
-        else {
+        if($num != null) {
+            $data = $response->json();
+            return new Attachment($data['dmMimeType'], $data['dmFileDescr'], $data['dmEncodedContext']);
+        } else {
             $list = [];
             foreach($response->json() as $item){
-                array_push($list, new Attachment($item));
+                $list[] = new Attachment($item['dmMimeType'], $item['dmFileDescr'], $item['dmEncodedContext']);
             }
             return $list;
         }
     }
 
-    public function getStatusCode(){ return $this->status; }
-    public function getStatus(){ return new MessageStatus($this->status); }
-    public function getStatusShort(){ return (new MessageStatus($this->status))->short(); }
-    public function getStatusLong(){ return (new MessageStatus($this->status))->long(); }
-    public function getSender(){ return new MessageSender($this->sender['name'], $this->sender['address'], $this->sender['type']); }
-    public function getRecipient(){ return new MessageRecipient($this->recipient['name'], $this->recipient['address']); }
-    public function getTypeCode(){ return $this->type; }
-    public function getType(){ return self::TYPES[$this->type]; }
+    public function getStatusCode(): int{ return $this->status; }
+    public function getStatus(): MessageStatus{ return new MessageStatus($this->status); }
+    public function getStatusShort(): string{ return (new MessageStatus($this->status))->short(); }
+    public function getStatusLong(): string{ return (new MessageStatus($this->status))->long(); }
+    public function getSender(): MessageSender{ return new MessageSender($this->sender['name'], $this->sender['address'], $this->sender['type']); }
+    public function getRecipient(): MessageRecipient{ return new MessageRecipient($this->recipient['name'], $this->recipient['address']); }
+    public function getTypeCode(): string{ return $this->type; }
+    public function getType(): string{ return self::TYPES[$this->type]; }
 
-    public function getRead(){ return $this->read; }
-    public function getSubject(){ return $this->subject; }
+    public function getRead(): bool{ return $this->read; }
+    public function getSubject(): string{ return $this->subject; }
 
-    public function getAttachmentNames(){
+    public function getAttachmentNames(): array{
         $list = [];
         foreach($this->attachments['dmFile'] as $attachment)
-            array_push($list, $attachment['dmFileDescr']);
+            $list[] = $attachment['dmFileDescr'];
         return $list;
     }
 

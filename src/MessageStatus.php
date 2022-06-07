@@ -1,6 +1,6 @@
 <?php
 
-namespace Misakstvanu\DSchrankaApiLaravel;
+namespace Misakstvanu\DschrankaApiLaravel;
 
 class MessageStatus {
     const STATUSES = [
@@ -35,6 +35,6 @@ class MessageStatus {
         $this->statusId = $statusId;
     }
 
-    public function short(){ return self::STATUSES[(int)$this->statusId]; }
-    public function long(){ return self::STATUSES_LONG[(int)$this->statusId]; }
+    public function short(): string{ return self::STATUSES[(int)$this->statusId]; }
+    public function long(): string{ return self::STATUSES_LONG[(int)$this->statusId]; }
 }

@@ -3,9 +3,9 @@
 namespace Misakstvanu\DschrankaApiLaravel;
 
 class Draft {
-    private $databox_id;
-    private $draftId;
-    private $data;
+    private int $databox_id;
+    private int $draftId;
+    private array $data;
 
     public function __construct($databox_id,
                                 $recipient = null, $subject = null, $personalDelivery = null, $publishIdentity = null, $textMessage = null, $toHands = null,
@@ -34,7 +34,7 @@ class Draft {
             'attachments' => $attachments
         ];
     }
-    public static function fromArray($array){
+    public static function fromArray($array): self{
         $recipient = [
             'id' => $array['recipient_id'] ?? null,
             'type' => $array['recipient_type'] ?? null,
@@ -49,11 +49,11 @@ class Draft {
         return $draft;
     }
 
-    public function setDraftId($id){
+    public function setDraftId($id): void{
         $this->draftId = $id;
     }
 
-    public function get(){
+    public function get(): self{
         $uri = '/databox/'.$this->databox_id.'/drafts/'.$this->draftId;
         $response = HTTPClient::request('GET', $uri);
         return Draft::fromArray($response->json());
@@ -63,7 +63,7 @@ class Draft {
         return $this->data; //todo this
     }
 
-    public function save(){
+    public function save(): self{
         $data = $this->data;
         if($data['address'] instanceof Address){
             $data['address'] = $data['address']->toArray();
@@ -78,7 +78,7 @@ class Draft {
         return self::fromArray($response->json());
     }
 
-    public function delete(){
+    public function delete(): bool{
         $uri = '/databox/'.$this->databox_id.'/drafts/'.$this->draftId;
         $response = HTTPClient::request('DELETE', $uri);
         return true;

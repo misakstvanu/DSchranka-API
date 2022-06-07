@@ -8,7 +8,7 @@ class HTTPClient {
     const URL = 'https://dschranka.cz/api/partner';
     const LOCAL_URL = 'http://127.0.0.1:8001/api/partner';
 
-    static function request($method, $uri, $data = null){
+    static function request($method, $uri, $data = null): HTTPResponse{
         //todo throw api key not set
         $method = strtoupper($method);
         $client = new Client();

@@ -4,18 +4,12 @@ namespace Misakstvanu\DschrankaApiLaravel;
 
 class Auth {
 
-    /**
-     * @return bool
-     */
-    public function check(){
+    public function check(): bool{
         HTTPClient::request('GET', '/auth');
         return true;
     }
 
-    /**
-     * @return bool
-     */
-    public function invalidate(){
+    public function invalidate(): bool{
         HTTPClient::request('DELETE', '/auth');
         return true;
     }

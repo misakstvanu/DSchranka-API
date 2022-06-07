@@ -7,11 +7,11 @@ class DataboxBuilder {
     /**
      * @return array<Databox>
      */
-    public function list($restorable = false){
+    public function list($restorable = false): array{
         $response = HTTPClient::request('GET', '/databox', ['restorable' => $restorable]);
         $list = [];
         foreach($response->json() as $item){
-            array_push($list, Databox::fromArray($item));
+            $list[] = Databox::fromArray($item);
         }
         return $list;
     }

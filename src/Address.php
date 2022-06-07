@@ -3,17 +3,17 @@
 namespace Misakstvanu\DschrankaApiLaravel;
 
 class Address {
-    const FIELDS = ['name', 'type', 'id'];
-    private $name;
-    private $type;
-    private $id;
+    private string $name;
+    private string $type;
+    private string $id;
 
-    public function __construct($data){
-        foreach(self::FIELDS as $field)
-            $this->$field = $data[$field];
+    public function __construct($name, $type, $id){
+        $this->name = $name;
+        $this->type = $type;
+        $this->id = $id;
     }
 
-    public function toArray(){
+    public function toArray(): array{
         return [
             'id' => $this->getId(),
             'name' => $this->getName(),
@@ -22,7 +22,7 @@ class Address {
     }
 
 
-    public function getName(){ return $this->name; }
-    public function getType(){ return $this->type; }
-    public function getId(){ return $this->id; }
+    public function getName(): string{ return $this->name; }
+    public function getType(): string{ return $this->type; }
+    public function getId(): string{ return $this->id; }
 }
