@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Helpers;
+namespace Misakstvanu\DschrankaApiLaravel;
 
 class DSchrankaDeliveryInfoFile {
     private $content;

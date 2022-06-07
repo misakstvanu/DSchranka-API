@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Helpers;
+namespace Misakstvanu\DschrankaApiLaravel;
 
 class DschrankaMessage {
     const FIELDS = ['type', 'sender', 'read', 'recipient', 'subject', 'status', 'attachments'];

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Helpers;
+namespace Misakstvanu\DschrankaApiLaravel;
 
 use GuzzleHttp\Psr7\Response;
 

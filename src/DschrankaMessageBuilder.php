@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Helpers;
+namespace Misakstvanu\DschrankaApiLaravel;
 
 class DschrankaMessageBuilder {
     private $databox_id;

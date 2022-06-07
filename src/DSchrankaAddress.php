@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Helpers;
+namespace Misakstvanu\DschrankaApiLaravel;
 
 class DSchrankaAddress {
     const FIELDS = ['name', 'type', 'id'];

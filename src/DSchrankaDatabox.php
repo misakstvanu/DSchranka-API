@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Helpers;
+namespace Misakstvanu\DschrankaApiLaravel;
 
 class DSchrankaDatabox {
     const FIELDS = ['username', 'name', 'created_at', 'updated_at', 'type'];

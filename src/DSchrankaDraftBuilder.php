@@ -1,8 +1,6 @@
 <?php
 
-namespace App\Helpers;
-
-use App\Models\Drafts;
+namespace Misakstvanu\DschrankaApiLaravel;
 
 class DSchrankaDraftBuilder {
     private $databox_id;
