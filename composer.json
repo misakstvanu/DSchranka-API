@@ -2,7 +2,7 @@
     "name": "misakstvanu/dschranka-api",
     "description": "Laravel package for DSchranka Partner API",
     "type": "library",
-    "license": "GPL3",
+    "license": "GPL-3.0-only",
     "version": "1.0.0",
     "autoload": {
         "psr-4": {
