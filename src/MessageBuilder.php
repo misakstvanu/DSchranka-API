@@ -5,11 +5,11 @@ namespace Misakstvanu\DschrankaApi;
 class MessageBuilder {
     private int $databox_id;
 
-    public function __construct($databox_id){
+    public function __construct(int $databox_id){
         $this->databox_id = $databox_id;
     }
 
-    private function getList($uri, $trashed = false, \DateTime $from = null, \DateTime $to = null): array{
+    private function getList(string $uri, bool $trashed = false, \DateTime $from = null, \DateTime $to = null): array{
         $response = HTTPClient::request('GET', $uri, [
             'trash' => $trashed,
             'from' => $from?->getTimestamp(),
@@ -24,14 +24,14 @@ class MessageBuilder {
     /**
      * @return array<Message>
      */
-    function received($trashed = false, \DateTime $from = null, \DateTime $to = null): array{
+    function received(bool $trashed = false, \DateTime $from = null, \DateTime $to = null): array{
         $uri = '/databox/'.$this->databox_id.'/messages/received';
         return $this->getList($uri, $trashed, $from, $to);
     }
     /**
      * @return array<Message>
      */
-    function sent($trashed = false, \DateTime $from = null, \DateTime $to = null): array{
+    function sent(bool $trashed = false, \DateTime $from = null, \DateTime $to = null): array{
         $uri = '/databox/'.$this->databox_id.'/messages/sent';
         return $this->getList($uri, $trashed, $from, $to);
     }

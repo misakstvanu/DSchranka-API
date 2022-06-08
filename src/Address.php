@@ -7,7 +7,7 @@ class Address {
     private string $type;
     private string $id;
 
-    public function __construct($name, $type, $id){
+    public function __construct(string $name, string $type, string $id){
         $this->name = $name;
         $this->type = $type;
         $this->id = $id;

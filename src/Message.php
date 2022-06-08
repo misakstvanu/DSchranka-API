@@ -27,12 +27,12 @@ class Message {
     private int $status;
     private array $attachments;
 
-    public function __construct($databox_id, $id){
+    public function __construct(int $databox_id, int $id){
         $this->databox_id = $databox_id;
         $this->id = $id;
     }
 
-    public static function fromArray($array): self{
+    public static function fromArray(array $array): self{
         $new = new self($array['databox_id'], $array['id']);
         foreach(self::FIELDS as $field){
             $new->$field = $array[$field];
@@ -76,7 +76,7 @@ class Message {
         return true;
     }
 
-    public function downloadAttachment($num = null): Attachment|array{
+    public function downloadAttachment(int $num = null): Attachment|array{
         $uri = '/databox/'.$this->databox_id.'/messages/'.$this->id.'/attachments/'.$num;
         $response = HTTPClient::request('GET', $uri);
         if($num != null) {

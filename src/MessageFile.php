@@ -5,7 +5,7 @@ namespace Misakstvanu\DschrankaApi;
 class MessageFile {
     private string $content;
 
-    function __construct($content){
+    function __construct(string $content){
         $this->content = $content;
     }
 

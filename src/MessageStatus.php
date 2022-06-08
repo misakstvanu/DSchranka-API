@@ -29,12 +29,12 @@ class MessageStatus {
         9 => 'Obsah zprávy byl smazán, obálka zprávy včetně hashů přesunuta do archivu.',
         10 => 'Zpráva byla přesunuta do Datového trezoru odesílatele nebo adresáta (nebo obou).',
     ];
-    private $statusId;
+    private int $statusId;
 
-    public function __construct($statusId){
+    public function __construct(int $statusId){
         $this->statusId = $statusId;
     }
 
-    public function short(): string{ return self::STATUSES[(int)$this->statusId]; }
-    public function long(): string{ return self::STATUSES_LONG[(int)$this->statusId]; }
+    public function short(): string{ return self::STATUSES[$this->statusId]; }
+    public function long(): string{ return self::STATUSES_LONG[$this->statusId]; }
 }

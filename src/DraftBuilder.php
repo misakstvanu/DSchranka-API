@@ -5,11 +5,11 @@ namespace Misakstvanu\DschrankaApi;
 class DraftBuilder {
     private int $databox_id;
 
-    public function __construct($databox_id){
+    public function __construct(int $databox_id){
         $this->databox_id = $databox_id;
     }
 
-    private function getList($uri, \DateTime $from = null, \DateTime $to = null): array{
+    private function getList(string $uri, \DateTime $from = null, \DateTime $to = null): array{
         $response = HTTPClient::request('GET', $uri, [
             'from' => $from?->getTimestamp(),
             'to' => $to?->getTimestamp()

@@ -7,7 +7,7 @@ use GuzzleHttp\Psr7\Response;
 class HTTPResponse {
     private Response $response;
 
-    public function __construct($response){
+    public function __construct(Response $response){
         $this->response = $response;
     }
 

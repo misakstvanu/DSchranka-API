@@ -7,7 +7,7 @@ class MessageSender {
     private string $address;
     private int $type;
 
-    public function __construct($name, $address, $type){
+    public function __construct(string $name, string $address, int $type){
         $this->name = $name;
         $this->address = $address;
         $this->type = $type;

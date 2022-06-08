@@ -7,11 +7,11 @@ class Draft {
     private int $draftId;
     private array $data;
 
-    public function __construct($databox_id,
-                                $recipient = null, $subject = null, $personalDelivery = null, $publishIdentity = null, $textMessage = null, $toHands = null,
-                                $senderRef = null, $senderIdent = null, $recipientRef = null, $recipientIdent = null,
-                                $lawTitleNum = null, $lawYear = null, $lawSection = null, $lawParagraph = null, $lawPoint = null,
-                                $attachments = null){
+    public function __construct(int $databox_id,
+                                array|Address $recipient = null, string $subject = null, bool $personalDelivery = null, bool $publishIdentity = null, string $textMessage = null, string $toHands = null,
+                                string $senderRef = null, string $senderIdent = null, string $recipientRef = null, string $recipientIdent = null,
+                                string $lawTitleNum = null, string $lawYear = null, string $lawSection = null, string $lawParagraph = null, string $lawPoint = null,
+                                array $attachments = []){
         $this->databox_id = $databox_id;
         $this->data = [
             'address' => $recipient,
@@ -34,7 +34,7 @@ class Draft {
             'attachments' => $attachments
         ];
     }
-    public static function fromArray($array): self{
+    public static function fromArray(array $array): self{
         $recipient = [
             'id' => $array['recipient_id'] ?? null,
             'type' => $array['recipient_type'] ?? null,
@@ -49,7 +49,7 @@ class Draft {
         return $draft;
     }
 
-    public function setDraftId($id): void{
+    public function setDraftId(int $id): void{
         $this->draftId = $id;
     }
 

@@ -12,7 +12,7 @@ class DSchranka {
         return new Auth();
     }
 
-    public static function databox($databox_id = null): Databox|DataboxBuilder{
+    public static function databox(int $databox_id = null): Databox|DataboxBuilder{
         if($databox_id)
             return new Databox($databox_id);
         else

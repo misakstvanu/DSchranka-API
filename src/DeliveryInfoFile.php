@@ -5,7 +5,7 @@ namespace Misakstvanu\DschrankaApi;
 class DeliveryInfoFile {
     private string $content;
 
-    public function __construct($content){
+    public function __construct(string $content){
         $this->content = $content;
     }
 
