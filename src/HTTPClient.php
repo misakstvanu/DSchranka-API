@@ -15,10 +15,10 @@ class HTTPClient {
 
         $response = $client->request(
             $method,
-            self::LOCAL_URL.$uri,
+            config('dschranka.local') ? self::LOCAL_URL.$uri : self::URL.$uri,
             options: [
                 'headers' => [
-                    'Authorization' => 'Bearer '.'SjNUsdQa0yipPSWVFSL9L9DzdL3xErQPZsVNyQHrxJKzcnPbp7BzFsxopjnqkyDq'
+                    'Authorization' => 'Bearer '.config('dschranka.apiKey')
                 ],
                 'form_params' => ($method == 'POST' || $method == 'PUT') ? $data : null,
                 'query' => $method == 'GET' ? $data : null

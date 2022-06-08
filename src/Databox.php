@@ -15,6 +15,12 @@ class Databox {
         $this->databox_id = $databox_id;
     }
 
+    public function login(){
+        $uri = '/databox/'.$this->databox_id.'/login';
+        $response = HTTPClient::request('GET', $uri);
+        return $response->json()['url'];
+    }
+
     public static function fromArray($array): self{
         $new = new self($array['databox_id']);
         foreach(self::FIELDS as $field){

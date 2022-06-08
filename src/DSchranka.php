@@ -2,7 +2,7 @@
 
 namespace Misakstvanu\DschrankaApi;
 
-class DSchrankaAPI {
+class DSchranka {
 
     public static function ping(): bool{
         return System::ping();
