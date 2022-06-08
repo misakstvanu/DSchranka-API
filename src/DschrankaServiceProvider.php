@@ -6,6 +6,12 @@ use Illuminate\Support\ServiceProvider;
 
 class DschrankaServiceProvider extends ServiceProvider{
 
+    function boot(){
+        $this->registerCommands();
+        $this->registerPublishing();
+
+    }
+
     /**
      * Register the package's publishable resources.
      *
@@ -16,6 +22,20 @@ class DschrankaServiceProvider extends ServiceProvider{
             $this->publishes([
                 __DIR__.'/../config/dschranka.php' => config_path('dschranka.php'),
             ], 'dschranka-config');
+        }
+    }
+
+    /**
+     * Register the package's commands.
+     *
+     * @return void
+     */
+    protected function registerCommands()
+    {
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                Console\PublishCommand::class,
+            ]);
         }
     }
 
